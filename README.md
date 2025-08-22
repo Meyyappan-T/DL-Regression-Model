@@ -62,66 +62,71 @@ plt.show()
 
 from logging import logProcesses
 class Model(nn.Module):
-  def __init__(self,in_features,out_features):
-    super().__init__()
-    self.linear=nn.Linear(in_features,out_features)
-  def forward(self,x):
-    return self.linear(x)
+    def __init__(self,in_features,out_features):
+        super().__init__()
+        self.linear=nn.Linear(in_features,out_features)
+
+    def forward(self,x):
+        return self.linear(x)
 
 torch.manual_seed(59)
 model=Model(1,1)
 
 initial_weight=model.linear.weight.item()
 initial_bias=model.linear.bias.item()
-print('\nName: MANOJ KUMAR S')
-print("Register No: 212223240082")
-print(f'Initial Weight: {initial_weight:.8f}, Initial Bias: {initial_bias:.8f}\n')
 
-loss_function = nn.MSELoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
+print("\nName: Meyyappan")
+print("Register No: (b012)")
+print(f"Initial weight: {initial_weight:.8f}, Initial bias: {initial_bias:.8f}\n")
+
+
+loss_function=nn.MSELoss()
+optimizer=torch.optim.SGD(model.parameters(),lr=0.001)
 
 epochs=100
 losses=[]
-
-for epoch in range(1, epochs + 1):
+for epoch in range(1,epochs+1):
   optimizer.zero_grad()
   y_pred=model(X)
   loss=loss_function(y_pred,y)
   losses.append(loss.item())
-
   loss.backward()
   optimizer.step()
+
 
   print(f'epoch: {epoch:2}  loss: {loss.item():10.8f}  '
           f'weight: {model.linear.weight.item():10.8f}  '
           f'bias: {model.linear.bias.item():10.8f}')
 
-plt.plot(range(epochs), losses, color='blue')
+plt.plot(range(epochs),losses,color='blue')
 plt.ylabel('Loss')
-plt.xlabel('Epoch')
-plt.title('Loss Curve')
+plt.xlabel('Epochs')
+plt.title("Loss Curve")
 plt.show()
+
+
 final_weight=model.linear.weight.item()
 final_bias=model.linear.bias.item()
-print("\nName : MANOJ KUMAR S")
-print("Register No: 212223240082")
-print(f'Final Weight: {final_weight:.8f}, Final Bias: {final_bias:.8f}')
+print("\nName:Meyyappan T")
+print("Register No:212223240086")
+print(f"Final weight: {final_weight:.8f}, Final bias: {final_bias:.8f}")
 
 x1=torch.tensor([X.min().item(),X.max().item()])
-y1= x1 * final_weight + final_bias
-plt.scatter(X,y,label='Original Data')
-plt.plot(x1,y1,'r',label='Best-Fitted Line')
+y1=x1*final_weight+final_bias
+
+plt.scatter(X,y,label="Original Data")
+plt.plot(x1,y1,'r',label="Best-Fit Line")
 plt.xlabel('x')
 plt.ylabel('y')
-plt.title('Trained Model: Best-Fit Line')
+plt.title("Trained Model: Best-Fit Line")
 plt.legend()
 plt.show()
 
-x_new=torch.tensor([[120.0]])
+x_new = torch.tensor([[120.0]])
 y_new_pred=model(x_new).item()
-print("\nName: MANOJ KUMAR S")
-print("Register No: 212223240082")
-print(f'Prediction for x = 120 : {y_new_pred:.8f}')
+print("\nName: Meyyappan T")
+print("Register No: (b012)")
+print(f"Predicted value for x={x_new.item()}: {y_new_pred:.8f}")
 ```
 
 ### Dataset Information
